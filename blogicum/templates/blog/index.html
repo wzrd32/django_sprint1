@@ -7,7 +7,7 @@
   <h1> Лента записей </h1>
 {% endblock title %}
 {% block content %}
-  {% for post in posts %}
+  {% for post in posts|dictsortreversed:'id' %}
 		<hr>
 		<article>
 			<ul>
@@ -18,14 +18,14 @@
 					Дата: {{ post.date }}
 				</li>
 				<li>
-					Категория: <a href="{% url 'blog:category' post.category %}">{{ post.category }}</a>
+					Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
 				</li>
 			</ul>          
-      <!-- Первые 10 слов -->
+     		<!-- Первые 10 слов -->
 			<p>
-				{{ post.text|truncatewords:10 }}
+			  {{ post.text|truncatewords:10 }}
 			</p>
-			<a href="{% url 'blog:detail' post.id %}">Читать полный текст</a>
-			</article>
+			<a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
+		</article>
   {% endfor %}
 {% endblock content %}
