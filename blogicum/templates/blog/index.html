@@ -8,24 +8,23 @@
 {% endblock title %}
 {% block content %}
   {% for post in posts|dictsortreversed:'id' %}
-		<hr>
-		<article>
-			<ul>
-				<li>
-				  Место: {{ post.location }}             
-				</li>
-				<li>
-					Дата: {{ post.date }}
-				</li>
-				<li>
-					Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
-				</li>
-			</ul>          
-     		<!-- Первые 10 слов -->
-			<p>
-			  {{ post.text|truncatewords:10 }}
-			</p>
-			<a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-		</article>
+    <hr>
+	  <article>
+	    <ul>
+		  <li>
+			Место: {{ post.location }}             
+		  </li>
+		  <li>
+			Дата: {{ post.date }}
+		  </li>
+		  <li>
+			Категория: <a href="{% url 'blog:category_posts' post.category %}">{{ post.category }}</a>
+		  </li>
+		</ul>
+	<p>
+	  {{ post.text|truncatewords:10 }}
+	</p>
+	<a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
+	  </article>
   {% endfor %}
 {% endblock content %}
